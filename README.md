@@ -6,6 +6,8 @@ A comprehensive implementation and comparison of state-of-the-art reinforcement 
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
+![Project Banner](images/project_banner.png)
+
 ## 📋 Table of Contents
 
 - [Overview](#overview)
@@ -27,6 +29,7 @@ A comprehensive implementation and comparison of state-of-the-art reinforcement 
 This project implements and compares **5 reinforcement learning algorithms** on the classic CartPole-v1 control problem from OpenAI Gymnasium. The goal is to balance a pole on a moving cart for as long as possible by applying left or right forces.
 
 **Environment**: CartPole-v1 (OpenAI Gymnasium)
+
 - **State Space**: 4D continuous (position, velocity, angle, angular velocity)
 - **Action Space**: 2 discrete actions (left, right)
 - **Success Criterion**: Average reward ≥ 475 over 100 consecutive episodes
@@ -34,12 +37,15 @@ This project implements and compares **5 reinforcement learning algorithms** on 
 ## 🤖 Algorithms Implemented
 
 ### Value-Based Methods
+
 1. **Deep Q-Network (DQN)**
+
    - Experience replay buffer
    - Target network for stability
    - Epsilon-greedy exploration
 
 2. **Double DQN**
+
    - Decouples action selection and evaluation
    - Reduces overestimation bias
    - Improved stability over vanilla DQN
@@ -50,7 +56,9 @@ This project implements and compares **5 reinforcement learning algorithms** on 
    - More efficient learning
 
 ### Policy-Based Methods
+
 4. **REINFORCE**
+
    - Monte Carlo policy gradient
    - Direct policy optimization
    - Baseline normalization
@@ -73,29 +81,34 @@ This project implements and compares **5 reinforcement learning algorithms** on 
 ## 🚀 Installation
 
 ### Prerequisites
+
 - Python 3.9 or higher
 - pip package manager
 
 ### Setup
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/yourusername/cart_pole.git
 cd cart_pole
 ```
 
 2. Create a virtual environment (recommended):
+
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
 3. Install dependencies:
+
 ```bash
 pip install -r requirements.txt
 ```
 
 ### Apple Silicon (M3/M2/M1) Users
+
 PyTorch will automatically detect and use the Metal Performance Shaders (MPS) backend for GPU acceleration.
 
 ## 💻 Usage
@@ -103,11 +116,13 @@ PyTorch will automatically detect and use the Metal Performance Shaders (MPS) ba
 ### Training from Scratch
 
 Open and run the Jupyter notebook:
+
 ```bash
 jupyter notebook cart_pole.ipynb
 ```
 
 The notebook is organized into 7 phases:
+
 1. **Phase 1**: Environment exploration and random baseline
 2. **Phase 2**: DQN implementation and training
 3. **Phase 3**: Advanced DQN variants (Double & Dueling)
@@ -163,13 +178,15 @@ cart_pole/
 
 ### Performance Summary
 
-| Algorithm      | Mean Reward | Success Rate | Episodes to Solve | Sample Efficiency |
-|---------------|-------------|--------------|-------------------|-------------------|
-| Dueling DQN   | 495.2 ± 8.1 | 98.0%       | 187              | ⭐⭐⭐⭐⭐        |
-| Double DQN    | 492.8 ± 9.3 | 96.0%       | 201              | ⭐⭐⭐⭐⭐        |
-| Vanilla DQN   | 489.5 ± 11.2| 94.0%       | 235              | ⭐⭐⭐⭐          |
-| A2C           | 487.3 ± 13.5| 92.0%       | 268              | ⭐⭐⭐           |
-| REINFORCE     | 481.2 ± 18.7| 88.0%       | 312              | ⭐⭐             |
+| Algorithm   | Mean Reward  | Success Rate | Episodes to Solve | Sample Efficiency |
+| ----------- | ------------ | ------------ | ----------------- | ----------------- |
+| Dueling DQN | 495.2 ± 8.1  | 98.0%        | 187               | ⭐⭐⭐⭐⭐        |
+| Double DQN  | 492.8 ± 9.3  | 96.0%        | 201               | ⭐⭐⭐⭐⭐        |
+| Vanilla DQN | 489.5 ± 11.2 | 94.0%        | 235               | ⭐⭐⭐⭐          |
+| A2C         | 487.3 ± 13.5 | 92.0%        | 268               | ⭐⭐⭐            |
+| REINFORCE   | 481.2 ± 18.7 | 88.0%        | 312               | ⭐⭐              |
+
+![Algorithm Comparison](images/algorithm_comparison.png)
 
 ### Key Findings
 
@@ -180,18 +197,33 @@ cart_pole/
 
 All algorithms successfully solved CartPole (avg reward ≥ 475).
 
+### Training Performance
+
+![DQN Training Comparison](images/dqn_training_comparison.png)
+
+The figure above shows the training dynamics of all three DQN variants, including:
+
+- Episode rewards with moving averages
+- Training loss convergence
+- Epsilon (exploration) decay
+- Q-value evolution over time
+
 ## 🔧 Hyperparameter Optimization
 
 Systematic random search over 30 configurations:
 
 **Search Space**:
+
 - Learning Rate: [0.0001, 0.0005, 0.001, 0.005]
 - Hidden Size: [64, 128, 256]
 - Batch Size: [32, 64, 128]
 - Gamma: [0.95, 0.99, 0.995]
 - Epsilon Decay: [0.995, 0.997, 0.999]
 
+![Hyperparameter Optimization](images/hyperparameter_optimization.png)
+
 **Optimal Configuration**:
+
 - Learning Rate: 0.001
 - Hidden Size: 128
 - Batch Size: 64
@@ -213,12 +245,26 @@ The project includes 30+ professional visualizations:
 - Sample efficiency comparisons
 - And more!
 
+### Agent Behavior Analysis
+
+![Best Agent Performance](images/best_agent_performance.png)
+
+Detailed visualization of the trained agent's behavior showing:
+
+- Cart position control within boundaries
+- Pole angle maintaining near-vertical balance
+- Velocity dynamics (cart and pole)
+- Action selection patterns
+- Q-value preferences
+- State space trajectory
+
 ## 🏆 Performance Comparison
 
 ### Convergence Speed
+
 ```
 Dueling DQN    ████████████████████ 187 episodes
-Double DQN     ██████████████████████ 201 episodes  
+Double DQN     ██████████████████████ 201 episodes
 Vanilla DQN    ████████████████████████ 235 episodes
 A2C            ██████████████████████████ 268 episodes
 REINFORCE      ████████████████████████████ 312 episodes
@@ -227,12 +273,14 @@ REINFORCE      █████████████████████�
 ### Value-Based vs Policy-Based
 
 **Value-Based (DQN variants)**:
+
 - ✅ Higher sample efficiency
 - ✅ More stable training
 - ✅ Better final performance
 - ❌ Requires more memory (replay buffer)
 
 **Policy-Based (REINFORCE/A2C)**:
+
 - ✅ Direct policy optimization
 - ✅ Natural stochastic policies
 - ✅ Easier continuous action extension
